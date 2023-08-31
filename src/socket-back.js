@@ -4,7 +4,10 @@ import { encontrarDocumento, atualizaDocumento } from "./documentosDb.js";
 
 
 io.on("connection", (socket) => {
-    console.log("Um cliente se conectou! ID:", socket.id);
+
+    socket.on("obter_documentos", () => {
+        console.log("O clciente está solicitando os documentos");
+    }) 
     
     socket.on("selecionar_documento", async (nomeDocumento) => {
         socket.join(nomeDocumento)
@@ -29,6 +32,8 @@ io.on("connection", (socket) => {
         }
 
     })
+
+    
 
 })
 
