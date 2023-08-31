@@ -1,12 +1,15 @@
 
 import io from "./servidor.js";
 import { encontrarDocumento, atualizaDocumento } from "./documentosDb.js";
+import { obterDocumentos } from "./documentosDb.js";
 
 
 io.on("connection", (socket) => {
 
-    socket.on("obter_documentos", () => {
-        console.log("O clciente está solicitando os documentos");
+    socket.on("obter_documentos", async (devolverDocumentos) => {
+        const documentos = await obterDocumentos();
+
+        devolverDocumentos(documentos)
     }) 
     
     socket.on("selecionar_documento", async (nomeDocumento) => {

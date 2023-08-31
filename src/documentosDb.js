@@ -1,5 +1,9 @@
 import { documentosColecao } from "./dbConnect.js";
 
+function obterDocumentos(){
+    const documentos = documentosColecao.find().toArray();
+        return documentos;
+}
 
 function encontrarDocumento(nome){
     // encontrar um documento no banco de dados onde a propriedade nome seja igual ao nome passado como parametro
@@ -24,4 +28,6 @@ function atualizaDocumento(nome, texto) {
 
 
 
-export { encontrarDocumento, atualizaDocumento }
+
+
+export { encontrarDocumento, atualizaDocumento, obterDocumentos }

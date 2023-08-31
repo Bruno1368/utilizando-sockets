@@ -1,5 +1,14 @@
 import "./socket-front-index.js"
 const listaDocumentos = document.getElementById("lista-documentos");
+const form = document.getElementById("form-adiciona-documento");
+const inputDocumento = document.getElementById("input-documento");
+
+
+form.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+    emitirAdicionarDocumento(inputDocumento.value);
+})
+
 
 function inserirLinkDocumento(nomeDocumento) {
     listaDocumentos.innerHTML += `
@@ -9,4 +18,5 @@ function inserirLinkDocumento(nomeDocumento) {
     `;
 }
 
-inserirLinkDocumento("Javascript")
+export { inserirLinkDocumento }
+
