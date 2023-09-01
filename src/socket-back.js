@@ -1,7 +1,8 @@
 
 import io from "./servidor.js";
-import { encontrarDocumento, atualizaDocumento } from "./documentosDb.js";
+import { encontrarDocumento, atualizaDocumento, adicionarDocumento, excluirDocumento } from "./documentosDb.js";
 import { obterDocumentos } from "./documentosDb.js";
+import { documentosColecao } from "./dbConnect.js";
 
 
 io.on("connection", (socket) => {
@@ -10,7 +11,27 @@ io.on("connection", (socket) => {
         const documentos = await obterDocumentos();
 
         devolverDocumentos(documentos)
+        
     }) 
+
+
+    socket.on("adicionar_documento", async(nome) => {
+
+        const documentoExiste = (await encontrarDocumento(nome)) !== null 
+
+        if(documentoExiste) {
+            socket.emit("documento_existente", nome)
+        } else {
+            const resultado = await adicionarDocumento(nome)
+            if(resultado.acknowledge){
+                io.emit("adicionar_documento_interface", nome)
+            }
+
+        }
+        
+        
+        
+    })
     
     socket.on("selecionar_documento", async (nomeDocumento) => {
         socket.join(nomeDocumento)
@@ -36,6 +57,14 @@ io.on("connection", (socket) => {
 
     })
 
+    socket.on("excluir_documento", async (nome) => {
+        const resultado = await excluirDocumento(nome)
+        
+
+        if(resultado.deletedCount) {
+            io.emit("excluir_documento_sucesso", nome)
+        }
+    })
     
 
 })
