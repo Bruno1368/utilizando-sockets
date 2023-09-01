@@ -23,16 +23,16 @@ function atualizaTextoEditor(texto) {
     textoEditor.value = texto;
 } 
 
-function excluiDocumento(texto) {
-}
 
 botaoExcluir.addEventListener("click", () => {
     emitirExcluirDocumento(nomeDocumento)
 })
 
 function alertarERedirecionar(nome) {
-    alert(`Documento ${nome} excluido com sucesso !`)
-    window.location.href = "/"
+    if(nome === nomeDocumento) {
+        alert(`Documento ${nome} excluido com sucesso !`)
+        window.location.href = "/"
+    }
 }
 
 
