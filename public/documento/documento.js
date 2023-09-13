@@ -11,7 +11,13 @@ const textoEditor = document.getElementById("editor-texto");
 const tituloDocumento = document.getElementById("titulo-documento");
 const botaoExcluir = document.getElementById("excluir-documento");
 
+
 tituloDocumento.textContent = nomeDocumento || "Documento sem título";
+
+function tratarAutorizacaoSucesso(payloadToken){
+  selecionarDocumento({ nomeDocumento, nomeUsuario: payloadToken.nomeUsuario })
+}
+
 
 selecionarDocumento(nomeDocumento);
 
@@ -37,4 +43,4 @@ function alertarERedirecionar(nome) {
   }
 }
 
-export { atualizaTextoEditor, alertarERedirecionar };
+export { atualizaTextoEditor, alertarERedirecionar, tratarAutorizacaoSucesso };
