@@ -1,5 +1,5 @@
 import { obterCookie } from "../utils/cookies.js";
-import { alertarERedirecionar, atualizaTextoEditor, tratarAutorizacaoSucesso } from "./documento.js";
+import { alertarERedirecionar, atualizaTextoEditor, atualizarInterfaceUsuarios, tratarAutorizacaoSucesso } from "./documento.js";
 
 const socket = io("/usuarios", {
   auth: {
@@ -35,5 +35,7 @@ function emitirExcluirDocumento(nome) {
 socket.on("excluir_documento_sucesso", (nome) => {
   alertarERedirecionar(nome);
 });
+
+socket.on("usuarios_no_documento", atualizarInterfaceUsuarios)
 
 export { emitirTextoEditor, selecionarDocumento, emitirExcluirDocumento };

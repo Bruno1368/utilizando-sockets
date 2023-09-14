@@ -10,6 +10,7 @@ const nomeDocumento = parametros.get("nome");
 const textoEditor = document.getElementById("editor-texto");
 const tituloDocumento = document.getElementById("titulo-documento");
 const botaoExcluir = document.getElementById("excluir-documento");
+const usuariosConectados = document.getElementById("usuarios-conectados")
 
 
 tituloDocumento.textContent = nomeDocumento || "Documento sem título";
@@ -43,4 +44,15 @@ function alertarERedirecionar(nome) {
   }
 }
 
-export { atualizaTextoEditor, alertarERedirecionar, tratarAutorizacaoSucesso };
+function atualizarInterfaceUsuarios(usuariosNoDocumento) {
+  usuariosConectados.innerHTML = "";
+
+  usuariosNoDocumento.forEach((usuario) => {
+    usuariosConectados.innerHTML += `
+    <li class="list-group-item">${usuario}</li>
+    `;
+  })
+
+}
+
+export { atualizaTextoEditor, alertarERedirecionar, tratarAutorizacaoSucesso, atualizarInterfaceUsuarios };
