@@ -1,5 +1,14 @@
 const conexoesDocumentos = [];
 
+function econtrarConexao(nomeDocumento, nomeUsuario) {
+  return conexoesDocumentos.find((conexao) => {
+    return (
+      conexao.nomeDocumento === nomeDocumento &&
+      conexao.nomeUsuario === nomeUsuario
+    );
+  });
+}
+
 function adicionarConexao(conexao) {
   conexoesDocumentos.push(conexao);
 }
@@ -21,28 +30,35 @@ function removerConexao(nomeDocumento, nomeUsuario) {
   if (indice !== -1) {
     conexoesDocumentos.splice(indice, 1);
   }
+
+  console.log(conexoesDocumentos);
 }
 
-export { adicionarConexao, obterUsuariosDocumento, removerConexao };
+export {
+  adicionarConexao,
+  obterUsuariosDocumento,
+  removerConexao,
+  econtrarConexao,
+};
 
 // exemplo
 const pessoas = [
-    {
-        nome: "joao", idade: 35,
-    },
-    {
-        nome: "alice", idade: 25,
-    },
-    {
-        nome: "bruno", idade: 40
-    }
-
-]
+  {
+    nome: "joao",
+    idade: 35,
+  },
+  {
+    nome: "alice",
+    idade: 25,
+  },
+  {
+    nome: "bruno",
+    idade: 40,
+  },
+];
 
 const indexPessoa = pessoas.findIndex((pessoa) => {
-    return pessoa.nome === "bruno" && pessoa.idade === 40
-})
+  return pessoa.nome === "bruno" && pessoa.idade === 40;
+});
 
-
-console.log(indexPessoa)
-
+//console.log(indexPessoa)

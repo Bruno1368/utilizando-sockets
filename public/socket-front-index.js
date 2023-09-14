@@ -34,4 +34,6 @@ socket.on("excluir_documento_sucesso", (nome) => {
   removerLinkDocumento(nome);
 });
 
+
+
 export { emitirAdicionarDocumento };
